@@ -1,7 +1,33 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    function lalala() {
+        var tmp = "";
+        $.ajax({
+            type: "GET",
+            url: "Controllers/HomeController.cs/HomeController/update",
+            async: false,
+            data: {json},
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            success: function (Rdata) {
+                alert(Rdata);
+            },
+            error: function (err) {
+                alert(er);
+            }
+        });
+    }
+    window.setInterval(function () { $ajax(getting) }, 1000);//1秒请求一次
+    
+</script>
 
 <p>Use this area to provide additional information.</p>
+<ul>
+ 
+</ul>

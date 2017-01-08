@@ -29,5 +29,7 @@ namespace dataShow.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<dataShow.Models.SOURCE> SOURCEs { get; set; }
     }
 }

@@ -1,0 +1,442 @@
+﻿<!--显示下拉列表-->>
+
+@{
+    Layout = null;
+}
+
+
+<script>
+        @using dataShow.Models;
+    @{
+        var sd = ViewData["sourceDetail"] as List<SourceDetail>;//数据源表
+        var m = ViewData["mac"] as List<MAC>;//mac表
+        var t = ViewData["time"] as List<TIMES>;//times表
+        var s = ViewData["source"] as List<SOURCE>;//信息表
+        var mt = ViewData["MediaTop"] as List<TOP>;//媒体排行榜
+        var st = ViewData["SumTime"] as List<SUMTIMES>;//时间统计表
+        var at = ViewData["AvgTime"] as List<SUMTIMES>;//时间平均表
+        var no = 0;
+    }
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Lumino - Dashboard </title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/datepicker3.css" rel="stylesheet">
+    <link href="~/Content/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+     <script src = "js/html5shiv.js" ></script >
+      <script src = "js/respond.min.js" ></ script >
+       <script src = "js/data.js></script>"
+        <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">数据导览</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Admin</a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <ul class="nav menu">
+            <li class="active"><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span>首页</a></li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 自定义 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+
+                </a>
+                <ul class="children collapse" id="sub-item-1">
+                    <li>
+                        <a class="" href="#" id="mt">
+                            <span class="glyphicon glyphicon-share-alt"></span> 媒体小时人次对比
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 地点_人数和停留时间
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 地理位置 <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-2">
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 媒体
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 地点
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 受众习惯 <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-3">
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 新老用户
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 访问频次
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 人群轨迹
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 实时轨迹图 <span data-toggle="collapse" href="#sub-item-4" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+
+                    <ul class="children collapse" id="sub-item-4">
+                        <li>
+                            <a class="" href="#">
+                                <span class="glyphicon glyphicon-share-alt"></span> 今日数据
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+            <li role="presentation" class="divider"></li>
+        </ul>
+    </div><!--/.sidebar-->
+
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li class="btn-group">
+                    <a id="p" class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                        选择采集点<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" id="cj">
+
+                        @foreach (var i in @ViewData["sourceDetail"] as List<SourceDetail>)
+                        {
+                            <li><a id="@i.sourceID" href="javascript:void(0);" onclick="document.getElementById('p').text = @i.sourceID">@i.sourceID</a></li>
+                        }
+                    </ul>
+
+                </li>
+                <li class="pull-right"><a href="#tab1" data-toggle="tab">最近三十天</a></li>
+                <li class="pull-right"><a href="#tab2" data-toggle="tab">最近七天</a></li>
+                <li class="active pull-right"><a href="#tab3" data-toggle="tab">昨日数据</a></li>
+            </ul>
+        </div><!--/.row-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"></h1>
+            </div>
+        </div><!--/.row-->
+        <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="panel panel-blue panel-widget ">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <em class="glyphicon glyphicon-shopping-cart glyphicon-l"></em>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">@m.Count</div>
+                            <div class="text-muted">
+                                媒体人流量
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="panel panel-orange panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <em class="glyphicon glyphicon-comment glyphicon-l"></em>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large" id="ddrs">@m.Count</div>
+                            <div class="text-muted">
+                                地点人流量
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="panel panel-teal panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <em class="glyphicon glyphicon-user glyphicon-l"></em>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">@at[@no].sum</div>
+                            <div class="text-muted">
+                                平均停留时间
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="panel panel-red panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <em class="glyphicon glyphicon-stats glyphicon-l"></em>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large" id="alltime">
+                                @st[@no].sum
+                            </div>
+                            <div class="text-muted">
+                                总停留时间
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>媒体人次排行榜Top5</strong>
+                        <a href="" class="pull-right">更多</a>
+                    </div>
+                    <div id="mtop" style="height: 100%"></div>
+                </div>
+
+            </div>
+            <script type="text/javascript">
+                function showt(x){
+                    var y = document.getElementById(x).
+                    document.getElementById("avgtime").text = 3;
+                }
+            </script>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>地点人数排行榜Top5</strong>
+                        <a href="" class="pull-right">更多</a>
+                    </div>
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                    <div id="ltop" style="height: 100%"></div>
+                    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+                    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                    <script type="text/javascript">
+var dom = document.getElementById("ltop");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['总人数']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: [@mt[0].name,@mt[1].name,@mt[2].name]
+    },
+    series: [
+        {
+            type: 'bar',
+            stack: '登录人数',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [@mt[0].sum,@mt[1].sum,@mt[2].sum]
+        }
+
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+                    </script>
+                    <script type="text/javascript">
+var dom = document.getElementById("mtop");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['总人数']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: [@mt[0].name,@mt[1].name,@mt[2].name]
+    },
+    series: [
+        {
+            type: 'bar',
+            stack: '登录人数',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [@mt[0].sum,@mt[1].sum,@mt[2].sum]
+        }
+
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="nav nav-tabs"><li><a><strong>平均停留时间排行榜TOP10</strong></a></li></ul>
+                <div id="AvgTop" style="height: 100%"></div>
+</div>
+
+        <script>
+            var dom3 = document.getElementById("AvgTop");
+            var myChart = echarts.init(dom3 );
+            var app = {};
+            option = null;
+            app.title = '坐标轴刻度与标签对齐';
+
+            option = {
+                color: ['#3398DB'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: [@at[0].sourceID,@at[1].sourceID,@at[2].sourceID],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '平均停留时间',
+                        type: 'bar',
+                        barWidth: '30%',
+                        data: [@st[0].sum,@st[1].sum,@at[2].sum]
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        </script>
+
+
+ 
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/chart.min.js"></script>
+<script src="~/Scripts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+
+
+
+<script src="~/Scripts/easypiechart.js"></script>
+<script src="~/Scripts/easypiechart-data.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/ECharts/echarts-all.js"></script>
+
+
+
+</body>
+
+</html>
