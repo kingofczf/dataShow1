@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dataShow.Models
+namespace webservice
 {
     using System;
     using System.Collections.Generic;

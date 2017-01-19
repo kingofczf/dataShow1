@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSource">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceResult" type="tns:ArrayOfSOURCE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSOURCE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SOURCE" nillable="true" type="tns:SOURCE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SOURCE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sourceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="macAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="stayTime" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="num" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="datatime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="newtime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSourceDetail">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSourceDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceDetailResult" type="tns:ArrayOfSourceDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSourceDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SourceDetail" nillable="true" type="tns:SourceDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SourceDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sourceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sourceLocation" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTimes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimesResult" type="tns:ArrayOfTIMES" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTIMES">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TIMES" nillable="true" type="tns:TIMES" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TIMES">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="periodTime" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="macAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sourceID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="num" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="timeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="datatime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="newtime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMac">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMacResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMacResult" type="tns:ArrayOfMAC" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMAC">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MAC" nillable="true" type="tns:MAC" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MAC">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="datatime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="sourceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="macaddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="macID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSource" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimes" />
+  </wsdl:message>
+  <wsdl:message name="GetTimesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMacSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMac" />
+  </wsdl:message>
+  <wsdl:message name="GetMacSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMacResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService1Soap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSource">
+      <wsdl:input message="tns:GetSourceSoapIn" />
+      <wsdl:output message="tns:GetSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceDetail">
+      <wsdl:input message="tns:GetSourceDetailSoapIn" />
+      <wsdl:output message="tns:GetSourceDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimes">
+      <wsdl:input message="tns:GetTimesSoapIn" />
+      <wsdl:output message="tns:GetTimesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMac">
+      <wsdl:input message="tns:GetMacSoapIn" />
+      <wsdl:output message="tns:GetMacSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSource">
+      <soap:operation soapAction="http://tempuri.org/GetSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceDetail">
+      <soap:operation soapAction="http://tempuri.org/GetSourceDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimes">
+      <soap:operation soapAction="http://tempuri.org/GetTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMac">
+      <soap:operation soapAction="http://tempuri.org/GetMac" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSource">
+      <soap12:operation soapAction="http://tempuri.org/GetSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceDetail">
+      <soap12:operation soapAction="http://tempuri.org/GetSourceDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimes">
+      <soap12:operation soapAction="http://tempuri.org/GetTimes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMac">
+      <soap12:operation soapAction="http://tempuri.org/GetMac" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService1">
+    <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
+      <soap:address location="http://localhost:14803/WebService1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
+      <soap12:address location="http://localhost:14803/WebService1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

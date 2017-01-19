@@ -7,19 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dataShow.Models
+namespace webservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class rawData
+    public partial class User
     {
-        public string rawMac { get; set; }
-        public int rawSource { get; set; }
-        public System.DateTime rawTime { get; set; }
-        public bool macOp { get; set; }
-        public bool sourceOp { get; set; }
-        public bool timeOp { get; set; }
-        public int rawID { get; set; }
+        public int userID { get; set; }
+        public int userpwd { get; set; }
     }
 }

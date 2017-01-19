@@ -64,6 +64,7 @@
           <Property Name="userID" Type="int" Nullable="false" />
           <Property Name="userpwd" Type="int" Nullable="false" />
         </EntityType>
+        <Function Name="dealData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DataShowModelStoreContainer">
           <EntitySet Name="MAC" EntityType="Self.MAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rawData" EntityType="Self.rawData" Schema="dbo" store:Type="Tables" />
@@ -143,6 +144,7 @@
           <EntitySet Name="SourceDetail" EntityType="Self.SourceDetail" />
           <EntitySet Name="TIMES" EntityType="Self.TIMES" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <FunctionImport Name="dealData" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -215,6 +217,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="dealData" FunctionName="DataShowModel.Store.dealData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

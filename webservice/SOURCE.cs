@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dataShow.Models
+namespace webservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TIMES
+    public partial class SOURCE
     {
-        public int periodTime { get; set; }
-        public string macAddress { get; set; }
         public int sourceID { get; set; }
+        public string macAddress { get; set; }
+        public int stayTime { get; set; }
         public short num { get; set; }
-        public int timeID { get; set; }
         public System.DateTime datatime { get; set; }
+        public int id { get; set; }
         public System.DateTime newtime { get; set; }
     }
 }

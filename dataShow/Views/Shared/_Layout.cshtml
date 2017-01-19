@@ -1,35 +1,123 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>实时数据显示</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/datepicker3.css" rel="stylesheet">
+    <link href="~/Content/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">数据导览</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="#">Admin</a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-          
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <ul class="nav menu">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span>首页</a></li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 自定义 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 
+                </a>
+                <ul class="children collapse" id="sub-item-1">
+                    <li>
+                        <a class="" href="#" id="mt">
+                            <span class="glyphicon glyphicon-share-alt"></span> 媒体小时人次对比
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 地点_人数和停留时间
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 地理位置 <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-2">
+                    <li>
+                        <a class="" href="~/Views/Media/Index.cshtml">
+                            <span class="glyphicon glyphicon-share-alt"></span> 媒体
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 地点
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 受众习惯 <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-3">
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 新老用户
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 访问频次
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 人群轨迹
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent ">
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> 实时轨迹图 <span data-toggle="collapse" href="#sub-item-4" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-4">
+                    <li>
+                        <a class="" href="#">
+                            <span class="glyphicon glyphicon-share-alt"></span> 今日数据
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li role="presentation" class="divider"></li>
+        </ul>
+    </div><!--/.sidebar-->
+        <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/chart.min.js"></script>
+    <section>
+        @RenderBody()
+    </section>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

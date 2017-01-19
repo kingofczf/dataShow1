@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dataShow.Models
+namespace webservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class SourceDetail
     {
-        public int userID { get; set; }
-        public int userpwd { get; set; }
+        public int sourceID { get; set; }
+        public string sourceLocation { get; set; }
     }
 }
