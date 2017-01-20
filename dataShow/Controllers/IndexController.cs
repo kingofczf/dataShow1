@@ -102,26 +102,8 @@ namespace dataShow.Controllers
             }
         }
 
-     public List<TOP> MediaTop5()
-        {
-
-            TOP tmp = new TOP();
-         
-            List<TOP> list1 = new List<TOP>();
-            for(int i = 0;i<5;i++)
-            {
-                tmp.name = ;
-                tmp.sum =;
-            }
-
-            return list1;
-        }
+    
  
-
-
-
-
-        //操作数据库
   
    
       
